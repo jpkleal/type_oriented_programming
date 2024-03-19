@@ -122,4 +122,45 @@ $$L'(a) = L(a)*\frac{1}{1-a}$$
 
 $$L'(a) = L(a)*L(a)$$
 
+Logo o zipper de uma lista é o produto de duas listas, que pode ser implementado como:
+
+```haskell
+data ListZipper a = ListZipper [a] [a]
+
+generateZipper :: [a] -> ListZipper a
+generateZipper = xs -> ListZipper [] xs
+
+-- mover para o próximo item da lista (para a direita)
+nextList :: ListZipper a -> ListZipper a
+nextList = (ListZipper behind (x:infront))  -> ListZipper (x:behind) infront
+
+
+-- mover para o ultimo item da lista (para a esquerda)
+lastList :: ListZipper a -> ListZipper a
+lastList = (ListZipper behind (x:infront))  -> ListZipper behind (x:infront)
+
+-- item em foco
+focus :: ListZipper a -> a
+focus (ListZipper _ []) = error "empty list"
+focus (ListZipper _ (x:xs)) = x
+```
+Assim o zipper define uma maneira de se locmover em uma lista (ao redor de um ponto de foco) em tempo constante.
+
+
 ## Classes de Tipos
+Além do que foi explicado anteriormente ainda é possivel definir classes de tipos. Classes tipos representam propriedades que todos os tipos pertencentes a classe possuem.
+Um exemplo disso é a classe monoid definida como um conjunto com uma operação binária e um elemento neutro. Um Monoid, por exemplo, é a classe de string com a operação de concatenação.
+
+```haskell
+class Monoid a where
+    mempty  :: a
+    mappend :: a -> a -> a
+
+    mconcat :: [a] -> a
+    mconcat = foldr mappend mempty
+
+-- definir que um tipo pertence a uma certa classe
+instance Monoid [a] where
+    mempty = []
+    mappend = (++)
+```
