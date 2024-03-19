@@ -16,13 +16,13 @@ data NovoTipo = ...
 Cada tipo algébrico define um conjunto de valores, logo é possivel definir a cardinalidade de um tipo. A cardinalidade de um tipo é a quantidades de valores que ele pode assumir.
 
 ### Tipo Zero
-Um tipo de cardinalidade zero é um conjunto vazio, logo uma variavel desse tipo não pode assumir nenhum valor. Ele é definido como:
+Um tipo de cardinalidade zero é um conjunto vazio, logo uma variável desse tipo não pode assumir nenhum valor. Ele é definido como:
 
 ```haskell
 data Zero
 ```
 ### Tipo Um
-Um tipo de cardinalidade um é um conjunto de um uníco elemento, logo uma variavel desse tipo só pode assumir valor. Ele é definido como:
+Um tipo de cardinalidade um é um conjunto de um único elemento, logo uma variável desse tipo só pode assumir valor. Ele é definido como:
 
 ```haskell
 data Um = ()
@@ -33,7 +33,7 @@ Em Haskell Tipos compostos podem surgir de dois padrões, ou de uma combinação
 ## Tipo Soma
 Um tipo pode ser formado da união de dois conjuntos diferentes, a cardinalidade desse novo tipo será igual a soma das cardinalidades dos tipos unidos, logo o nome tipo soma. Em Haskell um tipo soma pode ser gerado com `|` como separador entre os valores, ou com o `Either` para fazer a união disjunta dos conjuntos.
 
-Ex.: Pessoa Fisicia ou Juridica
+Ex.: Pessoa Físicia ou Jurídica
 
 ```haskell
 -- utilizando |
@@ -78,14 +78,14 @@ Outra maneira de definir tipos é por meio da recursão. Isso ocorre quando um t
 
 Ex.: Lista ligada 
 
-Por definição uma lista ligada é uma sequência de n elementos do mesmo tipo, lgoo poderiam ser definidas pela soma de uma lista vazia, uma lista de um elemente, uma lista de dois elementos e assim infinitamente.
-Por isso se utiliza a recursão para definilas
+Por definição uma lista ligada é uma sequência de n elementos do mesmo tipo, logo poderiam ser definidas pela soma de uma lista vazia, uma lista de um elemento, uma lista de dois elementos e assim infinitamente.
+Por isso se utiliza a recursão para defini-las
 
 ```haskell
 data [a] = [] | a:[a]
 ```
 
-Outra coisa que se pode perceber na lista é que são tipos parametricos, ou seja, sua definição varia dependendo de um tipo parametro `a`.
+Outra coisa que se pode perceber na lista é que são tipos paramétricos, ou seja, sua definição varia dependendo de um tipo parâmetro `a`.
 
 Ex.: Árvore 
 
@@ -100,19 +100,19 @@ data ArvoreBin a = Empty | No (ArvoreBin a) a (ArvoreBin a)
 
 ## Zippers
 
-Leve em consideração o tipo parametrico da um lista
+Leve em consideração o tipo paramétrico da um lista
 
 ```haskell
 data [a] = [] | a:[a]
 ```
 
-Agebricamente podemos defini-lo como
+Algebricamente podemos defini-lo como
 
 $$L(a) = 1 + a*L(a)$$
 
 $$L(a) = \frac{1}{1-a}$$
 
-Ao derivar $L(a)$ em função de $a$ obtem-se seu zipper. Um zipper de um tipo representa uma menira de atravesá-lo em tempo constante
+Ao derivar $L(a)$ em função de $a$ obtém-se seu zipper. Um zipper de um tipo representa uma maneira de atravessá-lo em tempo constante.
 
 $$L'(a) = 0 + (aL'(a)) + (1L(a))$$
 
@@ -144,11 +144,11 @@ focus :: ListZipper a -> a
 focus (ListZipper _ []) = error "empty list"
 focus (ListZipper _ (x:xs)) = x
 ```
-Assim o zipper define uma maneira de se locmover em uma lista (ao redor de um ponto de foco) em tempo constante.
+Assim o zipper define uma maneira de se locomover em uma lista (ao redor de um ponto de foco) em tempo constante.
 
 
 ## Classes de Tipos
-Além do que foi explicado anteriormente ainda é possivel definir classes de tipos. Classes tipos representam propriedades que todos os tipos pertencentes a classe possuem.
+Além do que foi explicado anteriormente, ainda é possível definir classes de tipos. Classes tipos representam propriedades que todos os tipos pertencentes a classe possuem.
 Um exemplo disso é a classe monoid definida como um conjunto com uma operação binária e um elemento neutro. Um Monoid, por exemplo, é a classe de string com a operação de concatenação.
 
 ```haskell
