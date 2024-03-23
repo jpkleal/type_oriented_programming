@@ -1,4 +1,4 @@
-# Tipos de Dados Algébricos
+# Tipos de Dados Algébricos em Haskell
 
 Tutorial 1 - Programação Guiada por Tipos
 
