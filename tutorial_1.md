@@ -164,3 +164,8 @@ instance Monoid [a] where
     mempty = []
     mappend = (++)
 ```
+
+## Referêcias
+[https://haskell.pesquisa.ufabc.edu.br/haskell/07.adt/](https://haskell.pesquisa.ufabc.edu.br/haskell/07.adt/)
+
+[https://wiki.haskell.org/Algebraic_data_type](https://wiki.haskell.org/Algebraic_data_type)
